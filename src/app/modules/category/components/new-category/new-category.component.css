@@ -1,0 +1,8 @@
+.category-container{
+    display:flex;
+    flex-direction: column;
+}
+mat-dialog-actions{
+    align-items: center;
+    text-align: center;
+}

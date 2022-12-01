@@ -11,10 +11,16 @@ const base_url = environment.base_url;
 export class CategoryService {
 
   constructor(private http: HttpClient) { }
-
+    //Obtener categorias.
     getCategories() {
       const endpoint = `${base_url}/categories`;
       return this.http.get(endpoint);
+    }
+    
+    //Guardar Categorias.
+    saveCategory(body:any){
+      const endpoint = `${base_url}/categories`;
+      return this.http.post(endpoint,body);
     }
   
   }
