@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmComponent } from 'src/app/modules/shared/component/confirm/confirm.component';
 import { CategoryService } from 'src/app/modules/shared/services/category.service';
 import { NewCategoryComponent } from '../new-category/new-category.component';
 
@@ -43,7 +44,7 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  //guardar categoria con ventana emergente
+  //Agregar new categoria con ventana emergente
   openCategoryDialog(){
     const dialogRef = this.dialog.open( NewCategoryComponent , {
       width: '450px'
@@ -63,7 +64,7 @@ export class CategoryComponent implements OnInit {
       }        
     });
   }
-
+  //Actualizar new categoria con ventana emergente
   edit(id:number,name:string,description:string){
     const dialogRef = this.dialog.open( NewCategoryComponent , {
       width: '450px',
@@ -84,13 +85,34 @@ export class CategoryComponent implements OnInit {
       }  
     });
   }
-
+  //mensaje inferior para el usuario.
   openSnackBar(message:string,action:string) : MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message,action, {
       duration:2000
     })
   }
 
+
+  delete(id:any){
+    const dialogRef = this.dialog.open( ConfirmComponent , {
+      
+      data:{ id:id }
+    });
+
+    dialogRef.afterClosed().subscribe( (result:any)=> {
+      if(result == 1){
+        //mensaje OK
+        this.openSnackBar("Categoria ELIMINADA Correctamente!","OK");
+        this.getCategories();
+      }else if(result == 2){
+        //mensaje ERROR
+        this.openSnackBar("Ups! Algo salio FATAL en la ELIMINACION....","ERROR");
+      }else if(result == 3){
+        //mensaje CANCELAR
+        this.openSnackBar("Te has arrepentido humano?....","ERROR HUMANO");
+      }  
+    });
+  }
 
 
 }
