@@ -17,10 +17,15 @@ export class CategoryService {
       return this.http.get(endpoint);
     }
     
-    //Guardar Categorias.
+    //Guardar Categoria.
     saveCategory(body:any){
       const endpoint = `${base_url}/categories`;
       return this.http.post(endpoint,body);
+    }
+    //Actualizar Categoria.
+    updateCategory(body:any,id:any){
+      const endpoint = `${base_url}/categories/${id}`;
+      return this.http.put(endpoint,body);
     }
   
   }

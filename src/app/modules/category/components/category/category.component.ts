@@ -18,6 +18,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
   }
+
   displayedColumns: String[] =['id','name','description','action'];  
   dataSource = new MatTableDataSource<CategoryElement>();
   
@@ -30,6 +31,7 @@ export class CategoryComponent implements OnInit {
     })
   }
 
+
   processCategoriesResponse(resp:any){
     const dataCategory: CategoryElement[] = [];
     if(resp.metadata[0].code == "00"){
@@ -41,7 +43,7 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-
+  //guardar categoria con ventana emergente
   openCategoryDialog(){
     const dialogRef = this.dialog.open( NewCategoryComponent , {
       width: '450px'
@@ -57,11 +59,31 @@ export class CategoryComponent implements OnInit {
         this.openSnackBar("Ups! Algo salio FATAL....","ERROR");
       }else if(result == 3){
         //mensaje por usuario imbecil
-        this.openSnackBar("Me da ami que estas demasiado ebrio ya no sabes ni que haces aqui","HumanDestroyed!");
+        this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
       }        
     });
   }
 
+  edit(id:number,name:string,description:string){
+    const dialogRef = this.dialog.open( NewCategoryComponent , {
+      width: '450px',
+      data:{ id:id, name: name, description: description }
+    });
+
+    dialogRef.afterClosed().subscribe( (result:any)=> {
+      if(result == 1){
+        //mensaje OK
+        this.openSnackBar("Categoria Actualizada Correctamente!","OK");
+        this.getCategories();
+      }else if(result == 2){
+        //mensaje ERROR
+        this.openSnackBar("Ups! Algo salio FATAL en la actualizacion....","ERROR");
+      }else if(result == 3){
+        //mensaje ERROR
+        this.openSnackBar("Te has arrepentido humano?....","ERROR HUMANO");
+      }  
+    });
+  }
 
   openSnackBar(message:string,action:string) : MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message,action, {
@@ -71,13 +93,7 @@ export class CategoryComponent implements OnInit {
 
 
 
-    
-
-
 }
-
-
-
 
 
 export interface CategoryElement{
