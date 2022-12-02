@@ -64,6 +64,8 @@ export class CategoryComponent implements OnInit {
       }        
     });
   }
+
+
   //Actualizar new categoria con ventana emergente
   edit(id:number,name:string,description:string){
     const dialogRef = this.dialog.open( NewCategoryComponent , {
@@ -85,17 +87,10 @@ export class CategoryComponent implements OnInit {
       }  
     });
   }
-  //mensaje inferior para el usuario.
-  openSnackBar(message:string,action:string) : MatSnackBarRef<SimpleSnackBar> {
-    return this.snackBar.open(message,action, {
-      duration:2000
-    })
-  }
 
 
   delete(id:any){
-    const dialogRef = this.dialog.open( ConfirmComponent , {
-      
+    const dialogRef = this.dialog.open( ConfirmComponent , {      
       data:{ id:id }
     });
 
@@ -114,6 +109,23 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+
+  buscar(termino:string){
+    if(termino.length === 0){
+    return this.getCategories();
+  }
+  this.categoryService.getCategoriesById(termino).subscribe(
+    (resp:any) => { this.processCategoriesResponse(resp);
+    })
+  }
+
+
+  //mensaje inferior para el usuario.
+  openSnackBar(message:string,action:string) : MatSnackBarRef<SimpleSnackBar> {
+    return this.snackBar.open(message,action, {
+      duration:2000
+    })
+  }
 
 }
 
