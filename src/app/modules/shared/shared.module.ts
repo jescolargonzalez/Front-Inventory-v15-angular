@@ -4,7 +4,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfirmComponent } from './component/confirm/confirm.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 
 
