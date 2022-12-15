@@ -1,0 +1,19 @@
+.product-container{
+    display:flex;
+    flex-direction: column;
+}
+mat-dialog-actions{
+    align-items: center;
+    text-align: center;
+}
+
+.input-file{
+    display:none;
+
+}
+.subir{
+    padding: 5px 16px;
+    background: #3f51b5;
+    color:#FFF;
+    border:0px solid #fff;
+}
