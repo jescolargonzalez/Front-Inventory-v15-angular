@@ -4,7 +4,7 @@
         <div>
             <mat-form-field hintLabel="Busque productos aqui" appearance="fill">
                 <mat-label>Buscar Productos...</mat-label>
-                <input matInput #input>
+                <input matInput #input (keyup)="buscar(input.value)">
             </mat-form-field>
         </div>
         <div>
@@ -57,7 +57,7 @@
                     <button mat-icon-nutton color="accent" (click)="edit(element.id, element.name, element.precio, element.cantidad, element.category)">
                         <mat-icon aria-label="Editar">edit</mat-icon>
                     </button>
-                    <button mat-icon-nutton color="accent">
+                    <button mat-icon-nutton color="accent"(click)="delete(element.id)">
                         <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
                 </td>          

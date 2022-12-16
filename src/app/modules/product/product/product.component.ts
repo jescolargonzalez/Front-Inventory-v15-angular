@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef, MAT_SNACK_BAR_DEFAULT_OPTIONS_FACTORY, SimpleSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmComponent } from '../../shared/components/confirm/confirm.component';
 import { ProductService } from '../../shared/services/product.service';
 import { NewProductComponent } from '../new-product/new-product.component';
 
@@ -80,6 +81,7 @@ export class ProductComponent implements OnInit {
       }        
     });
   }
+
   openProductDialog(){
     const dialogRef = this.dialog.open( NewProductComponent , {
       width: '450px'
@@ -100,7 +102,41 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  delete(id:any){
+        const dialogRef = this.dialog.open( ConfirmComponent , {
+        width: '450px',
+        data:{id:id,module:"product"}
+      });
+
+      dialogRef.afterClosed().subscribe( (result:any)=> {
+        if(result == 1){
+          //mensaje OK
+          this.openSnackBar("Producto Eliminado Correctamente!","OK");
+          this.getProducts();
+        }else if(result == 2){
+          //mensaje ERROR
+          this.openSnackBar("Ups! Algo salio FATAL al ELIMINAR el producto....","ERROR");
+        }else if(result == 3){
+          //mensaje por usuario imbecil
+          this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+        }        
+      });
+    }
+
+    buscar(name: any){
+      if ( name.length === 0){
+        return this.getProducts();
+      }
+  
+      this.productService.getProductByName(name)
+          .subscribe( (resp: any) =>{
+            this.processProductResponse(resp);
+          })
+    }
+
 }
+
+
 
 export interface ProductElement{
   id: number;
