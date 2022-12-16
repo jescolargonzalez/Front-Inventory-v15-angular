@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
   getProducts(){
     this.productService.getProducts().subscribe(
       (data:any) => {
-        //console.log("respuesta de productos: ", data);
+        console.log("respuesta de productos: ", data);
         this.processProductResponse(data);
     },(error:any) => {
         console.log("error en productos: ", error);
@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
     if( resp.metadata[0].code == "00"){
       let listProduct = resp.productResponse.products;
         listProduct.forEach((element: ProductElement) =>{
-        element.category = element.category.name;
+        //element.category = element.category.name;
         element.picture = 'data:image/jpeg;base64,'+element.picture;
         dateProduct.push(element);
       });
@@ -60,7 +60,26 @@ export class ProductComponent implements OnInit {
       duration:2000
     })
   }
+  edit(id:number,name:string,price:number,cantidad:number,category:any){
+    const dialogRef = this.dialog.open( NewProductComponent , {
+      width: '450px',
+      data:{id:id,name:name,price:price,cantidad:cantidad,category:category}
+    });
 
+    dialogRef.afterClosed().subscribe( (result:any)=> {
+      if(result == 1){
+        //mensaje OK
+        this.openSnackBar("Producto Actualizado Correctamente!","OK");
+        this.getProducts();
+      }else if(result == 2){
+        //mensaje ERROR
+        this.openSnackBar("Ups! Algo salio FATAL al editar el producto....","ERROR");
+      }else if(result == 3){
+        //mensaje por usuario imbecil
+        this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+      }        
+    });
+  }
   openProductDialog(){
     const dialogRef = this.dialog.open( NewProductComponent , {
       width: '450px'
@@ -86,7 +105,7 @@ export class ProductComponent implements OnInit {
 export interface ProductElement{
   id: number;
   name: string;
-  precio: number;
+  price: number;
   cantidad: number;
   category: any;
   picture: any;
