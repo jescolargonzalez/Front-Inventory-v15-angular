@@ -5,16 +5,14 @@
     <mat-toolbar color="primary" class="dashboard-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
         <h1 class="app-name">System Inventory v2.0</h1>
-        <div class="#@#@">
-            <ul><li>
-                    <button mat-icon-button>
-                        <mat-icon>help_outline</mat-icon>
-                    </button>
-                </li>
+        <div class="btns">
+            <ul>
+                <li> <button mat-icon-button><mat-icon>help_outline</mat-icon></button> </li>
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
-                    </button>
+                    </button> </li>
+                    <li>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="logout()">
                             <mat-icon>exit_to_app</mat-icon>

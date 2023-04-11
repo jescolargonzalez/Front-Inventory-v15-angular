@@ -82,7 +82,7 @@ export class ProductComponent implements OnInit {
         this.openSnackBar("Ups! Algo salio FATAL al editar el producto....","ERROR");
       }else if(result == 3){
         //mensaje por usuario imbecil
-        this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+        this.openSnackBar("El humano visitante a cerrado el menu","Cancelado");
       }        
     });
   }
@@ -102,7 +102,7 @@ export class ProductComponent implements OnInit {
         this.openSnackBar("Ups! Algo salio FATAL al guardar el producto....","ERROR");
       }else if(result == 3){
         //mensaje por usuario imbecil
-        this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+        this.openSnackBar("El humano visitante a cerrado el menu","Cancelado");
       }        
     });
   }
@@ -123,7 +123,7 @@ export class ProductComponent implements OnInit {
           this.openSnackBar("Ups! Algo salio FATAL al ELIMINAR el producto....","ERROR");
         }else if(result == 3){
           //mensaje por usuario imbecil
-          this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+          this.openSnackBar("El humano visitante a cerrado el menu","Cancelado");
         }        
       });
     }

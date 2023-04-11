@@ -11,7 +11,7 @@ import { CategoryService } from 'src/app/modules/shared/services/category.servic
 export class NewCategoryComponent implements OnInit {
 
   public categoryForm: FormGroup;
-  estadoForm: string = "Agregar";
+  estadoForm: string = "Agregar nueva ";
 
   constructor( private fb : FormBuilder, private categoryService:CategoryService,
               private dialogRef : MatDialogRef<NewCategoryComponent> ,
@@ -26,6 +26,7 @@ export class NewCategoryComponent implements OnInit {
     if(data != null){
       this.updateForm(data);
       this.estadoForm = "Actualizar";
+
     }
 
   }

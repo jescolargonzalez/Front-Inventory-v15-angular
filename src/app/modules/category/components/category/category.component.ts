@@ -67,10 +67,10 @@ export class CategoryComponent implements OnInit {
         this.getCategories();
       }else if(result == 2){
         //mensaje ERROR
-        this.openSnackBar("Ups! Algo salio FATAL....","ERROR");
+        this.openSnackBar("La categoria que estas tratando de eliminar aun tiene productos asociados , porfavor destruyalos","ERROR");
       }else if(result == 3){
         //mensaje por usuario imbecil
-        this.openSnackBar("Me da ami que estas demasiado PEDO que ya ni sabes ni que haces aqui","HumanDestroyed!");
+        this.openSnackBar("El humano visitante a cerrado el menu","Cancelado");
       }        
     });
   }

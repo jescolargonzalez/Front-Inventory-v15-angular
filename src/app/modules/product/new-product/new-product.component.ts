@@ -22,7 +22,7 @@ export interface Category{
 export class NewProductComponent implements OnInit {
 
   public productForm: FormGroup;
-  estadoForm: string = "Agregar";
+  estadoForm: string = "Agregar nuevo ";
   categories: Category[] = [];
   selectedFile: any;
   nameImg:String="";
@@ -39,7 +39,7 @@ export class NewProductComponent implements OnInit {
       })
       if(data!=null){
         this.updateForm(data);
-        this.estadoForm = "actualizar";
+        this.estadoForm = "Actualizar";
       }
     }
 

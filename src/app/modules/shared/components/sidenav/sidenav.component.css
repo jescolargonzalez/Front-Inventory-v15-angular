@@ -30,6 +30,7 @@ ul li {
     list-style: none;   
     display: inline-block;   
     justify-content:flex-end;
+
 }
 
 .profile-card{
@@ -43,4 +44,8 @@ ul li {
 
 .icono{
     margin-right: 10px;
+}
+.btns{
+    width: 100%;         
+    text-align: right;
 }
